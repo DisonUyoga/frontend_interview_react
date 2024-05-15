@@ -1,0 +1,20 @@
+version: "3.8"
+services: 
+  frontend:
+    container_name: nasa-api
+    build:
+      context: . 
+    restart: always
+    command: npm run dev
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV="${NODE_ENV}"
+      #if you’re using Windows, you may need to uncomment the next line - Sol from @Kobe E
+      #- WATCHPACK_POLLING=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - 3000:3000
